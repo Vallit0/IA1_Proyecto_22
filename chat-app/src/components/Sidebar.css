@@ -1,0 +1,85 @@
+.sidebar {
+       width: 250px; /* Ancho fijo */
+       background-color: #1e1e2f; /* Fondo oscuro */
+       color: white; /* Texto blanco */
+       padding: 20px;
+       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+       position: fixed; /* Fija la barra al lado izquierdo */
+       height: 100vh; /* Ocupa toda la altura de la pantalla */
+       left: 0; /* Se asegura de que quede pegada al borde izquierdo */
+       top: 0;
+       transition: width 0.3s ease;
+     }
+     
+     .sidebar h2 {
+       margin-bottom: 20px;
+       font-size: 1.5rem;
+       color: #fff;
+     }
+     
+     .sidebar ul {
+       list-style: none;
+       padding: 0;
+     }
+     
+     .sidebar li {
+       margin-bottom: 10px;
+       padding: 10px;
+       background-color: #2a2a3f;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background-color 0.3s;
+     }
+     
+     .sidebar li:hover {
+       background-color: #007bff;
+     }
+     .sidebar-header {
+       display: flex;
+       align-items: center;
+       margin-bottom: 20px;
+     }
+     
+     .sidebar-logo {
+       width: 40px;
+       height: 40px;
+       margin-right: 10px;
+       border-radius: 50%; /* Opcional, para un estilo circular */
+     }
+     
+     .sidebar-header {
+       display: flex;
+       align-items: center;
+       justify-content: space-between; /* Espaciado entre el botón y el título */
+       margin-bottom: 20px;
+     }
+     
+     .sidebar-toggle-button {
+       background-color: transparent; /* Fondo transparente */
+       border: none;
+       color: white;
+       font-size: 1.5rem;
+       cursor: pointer;
+       padding: 5px;
+       padding: 5px 10px;
+       margin-right: 10px;
+     }
+     
+     .sidebar-toggle-button:hover {
+       color: #007bff;
+     }
+     
+     .sidebar-title {
+       display: flex;
+       align-items: center;
+       margin-right: 30px;
+
+     }
+     
+     .sidebar-logo {
+       width: 40px;
+       height: 40px;
+       margin-right: 5px;
+       border-radius: 50%;
+     }
+     

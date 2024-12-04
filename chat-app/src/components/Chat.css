@@ -32,7 +32,7 @@
        display: flex;
        align-items: center;
        padding: 10px;
-       background-color: #2a2a3f; /* Fondo de la barra */
+       background-color: #111; /* Fondo de la barra */
        margin-bottom: 20px; /* Eleva la barra del borde inferior */
      }
      
@@ -49,10 +49,10 @@
      .chat-send-button {
        padding: 10px 20px;
        margin-left: 10px;
-       background-color: #007bff;
+       background-color: #7a14eb;
        color: white;
        border: none;
-       border-radius: 5px;
+       border-radius: 20px;
        cursor: pointer;
      }
      
