@@ -1,0 +1,44 @@
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+  width: 100vw;
+  background-color: #111;
+  color: white;
+}
+
+.welcome-title {
+  font-size: 4rem;
+  background: linear-gradient(to right, #ff6f91, #845ec2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #888;
+}
+
+.welcome-options {
+  display: flex;
+  gap: 20px;
+}
+
+.option-card {
+  background: #2a2a3f;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  font-size: 1.2rem;
+}
+
+.option-card:hover {
+  background: #007bff;
+  transform: translateY(-5px);
+}

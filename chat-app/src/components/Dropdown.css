@@ -1,0 +1,48 @@
+/* Estilo general del dropdown */
+.dropdown {
+       position: relative;
+       display: inline-block;
+     }
+     
+     .dropdown-button {
+       background-color: #1e1e2f;
+       color: white;
+       padding: 10px 20px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       font-size: 16px;
+       transition: background-color 0.3s;
+     }
+     
+     .dropdown-button:hover {
+       background-color: #007bff;
+     }
+     
+     /* Menú desplegable */
+     .dropdown-menu {
+       position: absolute;
+       top: 100%;
+       left: 0;
+       background-color: #2a2a3f;
+       border-radius: 5px;
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       margin: 0;
+       padding: 0;
+       list-style: none;
+       z-index: 1000;
+       min-width: 200px;
+     }
+     
+     .dropdown-item {
+       padding: 10px;
+       color: white;
+       text-align: left;
+       cursor: pointer;
+       transition: background-color 0.3s;
+     }
+     
+     .dropdown-item:hover {
+       background-color: #007bff;
+     }
+     

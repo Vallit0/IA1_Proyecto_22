@@ -1,0 +1,23 @@
+/* Estilo base */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ocupa toda la pantalla */
+  width: 100vw;
+  overflow: hidden; /* Evita el scroll innecesario */
+  background-color: #111; /* Fondo oscuro */
+}
+
+/* Cuando la pantalla de bienvenida está activa */
+.welcome-active {
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center;
+}
+
+/* Cuando el chat está activo */
+.chat-active {
+  display: flex;
+  flex-direction: column;
+}
+
+
