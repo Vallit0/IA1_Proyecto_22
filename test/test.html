@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #chat {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+        #messages {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        #messages .message {
+            margin: 5px 0;
+        }
+        .user {
+            text-align: right;
+        }
+        .bot {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <div id="messages"></div>
+        <input type="text" id="input" placeholder="Escribe un mensaje..." />
+        <button id="send">Enviar</button>
+    </div>
+
+    <script>
+        let model;
+        const vocabulary = ["hola", "gracias", "adios", "lloviendo"]; // Mismo vocabulario usado al entrenar.
+        const labels = ["greeting", "thanks", "goodbye", "weather"]; // Mismas etiquetas.
+
+        async function loadModel() {
+           model = await tf.loadLayersModel('http://localhost:8080/model.json');
+            model.summary();
+            console.log('Modelo cargado');
+        }
+
+        function predictIntent(message) {
+            const words = message.toLowerCase().split(' ');
+            const bagOfWords = vocabulary.map(word => words.includes(word) ? 1 : 0);
+            const inputTensor = tf.tensor2d([bagOfWords]);
+
+            const prediction = model.predict(inputTensor);
+            const predictedIndex = prediction.argMax(1).dataSync()[0];
+
+            inputTensor.dispose();
+            prediction.dispose();
+
+            return labels[predictedIndex];
+        }
+
+        function addMessage(content, sender) {
+            const messages = document.getElementById('messages');
+            const message = document.createElement('div');
+            message.className = `message ${sender}`;
+            message.textContent = content;
+            messages.appendChild(message);
+            messages.scrollTop = messages.scrollHeight; // Scroll automático.
+        }
+
+        document.getElementById('send').addEventListener('click', () => {
+            const input = document.getElementById('input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            const intent = predictIntent(message);
+
+            const responses = {
+                greeting: ["Hola!", "¿Qué tal?"],
+                thanks: ["¡De nada!", "No hay problema."],
+                goodbye: ["¡Adiós!", "Hasta luego."],
+                weather: ["Parece que lloverá.", "El clima está despejado."]
+            };
+
+            const response = responses[intent][Math.floor(Math.random() * responses[intent].length)];
+            addMessage(response, 'bot');
+            input.value = '';
+        });
+
+        loadModel();
+    </script>
+</body>
+</html>
+
