@@ -28,6 +28,13 @@
        border-radius: 10px;
      }
      
+     .message2 {
+      margin-bottom: 10px;
+      background: #7a14eb;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
      .chat-input-container {
        display: flex;
        align-items: center;
