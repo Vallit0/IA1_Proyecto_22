@@ -1,0 +1,901 @@
+{"intents":
+  [
+    {
+        "tag": "saludo",
+        "patterns": [
+            "hola",
+            "hola que tal?",
+            "hola, como estas",
+            "hola amigo",
+            "buenas",
+            "buenos dias",
+            "buenas tardes",
+            "buenas noches",
+            "hey",
+            "holi",
+            "saludos",
+            "que tal"
+        ],
+        "response": [
+            "hola",
+            "hola, todo bien?",
+            "hola, como estas hoy?",
+            "hola, como puedo ayudarte?",
+            "buenas!",
+            "buenos dias, como estas?",
+            "buenas tardes, en que puedo ayudarte?",
+            "buenas noches, que necesitas?",
+            "hola, un gusto saludarte",
+            "que tal, como puedo asistirte?",
+            "hey! que tal todo?",
+            "saludos!"
+        ]
+    },
+    {
+        "tag": "despedida",
+        "patterns": [
+            "adios",
+            "hasta luego",
+            "nos vemos",
+            "chao",
+            "me despido",
+            "hasta pronto",
+            "cuidate",
+            "bye",
+            "hasta la proxima",
+            "que te vaya bien",
+            "hasta manana",
+            "nos vemos luego"
+        ],
+        "response": [
+            "adios",
+            "hasta luego",
+            "nos vemos pronto",
+            "chao, que tengas un buen dia",
+            "hasta la proxima",
+            "cuídate mucho",
+            "bye, que te vaya bien",
+            "nos vemos",
+            "hasta pronto",
+            "que tengas un excelente dia",
+            "nos vemos en otra oportunidad",
+            "adios, fue un gusto hablar contigo"
+        ]
+    },
+    {
+        "tag": "ayuda",
+        "patterns": [
+            "necesito ayuda",
+            "puedes ayudarme",
+            "no entiendo",
+            "ayuda",
+            "me puedes explicar",
+            "tengo una duda",
+            "alguien me puede asistir"
+        ],
+        "response": [
+            "Claro, ¿en qué puedo ayudarte?",
+            "Estoy aquí para ayudarte, ¿qué necesitas?",
+            "Dime, ¿cómo puedo asistirte?",
+            "Por supuesto, cuéntame qué necesitas.",
+            "¿En qué puedo serte útil?"
+        ]
+    },
+    {
+        "tag": "informacion",
+        "patterns": [
+            "quiero información",
+            "cuéntame más",
+            "explícame",
+            "¿qué es esto?",
+            "detalles",
+            "me das más info?",
+            "dime algo sobre esto"
+        ],
+        "response": [
+            "¿Qué información necesitas?",
+            "Claro, puedo darte más detalles.",
+            "Por favor, especifica lo que necesitas saber.",
+            "Aquí tienes la información solicitada.",
+            "Dime exactamente qué deseas saber y te lo explico."
+        ]
+    },
+    {
+        "tag": "agradecimientos",
+        "patterns": [
+            "gracias",
+            "muchas gracias",
+            "te lo agradezco",
+            "muy amable",
+            "mil gracias",
+            "te agradezco mucho"
+        ],
+        "response": [
+            "De nada, ¡para eso estoy!",
+            "Es un placer ayudarte.",
+            "No hay de qué, cualquier cosa aquí estoy.",
+            "Con gusto, avísame si necesitas algo más.",
+            "Gracias a ti, ¡espero haberte ayudado!"
+        ]
+    },
+    {
+        "tag": "error",
+        "patterns": [
+            "no entiendo eso",
+            "¿puedes repetir?",
+            "no está claro",
+            "no funciona",
+            "creo que hay un error",
+            "me sale un problema"
+        ],
+        "response": [
+            "Lo siento, ¿puedes reformular tu pregunta?",
+            "Déjame intentar explicarlo de otra manera.",
+            "Perdón por la confusión, ¿qué necesitas aclarar?",
+            "Voy a revisarlo, ¿puedes describirme el problema en detalle?",
+            "Gracias por informarlo, déjame solucionarlo."
+        ]
+    },
+    {
+        "tag": "saludos_nocturnos_matutinos",
+        "patterns": [
+            "buenas noches",
+            "buenos días",
+            "buenas tardes",
+            "hola por la mañana",
+            "hola por la tarde",
+            "que tal esta noche"
+        ],
+        "response": [
+            "¡Buenos días! ¿Cómo estás hoy?",
+            "¡Buenas tardes! ¿En qué puedo ayudarte?",
+            "¡Buenas noches! Espero tengas un excelente descanso.",
+            "Hola, espero estés teniendo un gran día.",
+            "Que gusto saludarte en este momento del día, ¿cómo te ayudo?"
+        ]
+    },
+    {
+        "tag": "conversacion_general",
+        "patterns": [
+            "¿cómo estás?",
+            "¿qué tal?",
+            "¿qué haces?",
+            "¿todo bien?",
+            "¿cómo va tu día?",
+            "¿qué tal todo?"
+        ],
+        "response": [
+            "Estoy bien, gracias. ¿Y tú?",
+            "Todo en orden, ¿cómo puedo ayudarte?",
+            "¡Genial! ¿Qué necesitas?",
+            "Aquí para asistirte, ¿qué tal todo contigo?",
+            "¡Perfecto! ¿Cómo estás tú?"
+        ]
+    },
+    {
+        "tag": "motivacion_inspiracion",
+        "patterns": [
+            "necesito motivación",
+            "dame algo de inspiración",
+            "me siento desmotivado",
+            "quiero algo positivo",
+            "anímame"
+        ],
+        "response": [
+            "¡Tú puedes lograrlo! Nunca dudes de ti mismo.",
+            "Recuerda que cada día es una nueva oportunidad.",
+            "El esfuerzo siempre tiene su recompensa.",
+            "Confía en ti, estás más cerca de lo que crees.",
+            "¡Eres increíble! No te detengas."
+        ]
+    },
+    {
+        "tag": "bienvenida",
+        "patterns": [
+            "hola",
+            "buenos días",
+            "me presento",
+            "acabo de llegar",
+            "quiero saber más"
+        ],
+        "response": [
+            "¡Bienvenido! Estoy aquí para ayudarte.",
+            "Hola, es un gusto conocerte. ¿En qué puedo asistirte?",
+            "¡Qué alegría tenerte aquí! Pregunta lo que necesites.",
+            "Bienvenido, dime cómo puedo serte útil.",
+            "Hola, estoy a tu disposición para lo que necesites."
+        ]
+    },
+    {
+        "tag": "chistes_humor",
+        "patterns": [
+            "cuéntame un chiste",
+            "algo gracioso",
+            "me haces reír",
+            "estoy aburrido",
+            "entretenme"
+        ],
+        "response": [
+            "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+            "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas!",
+            "¿Cuál es el colmo de un jardinero? ¡Que le dejen plantado!",
+            "¿Sabías que los peces nunca mienten? ¡Porque siempre son sinceros!",
+            "¿Por qué los pájaros no usan Facebook? ¡Porque ya tienen Twitter!"
+        ]
+    },
+    {
+        "tag": "negacion",
+        "patterns": [
+            "no",
+            "no quiero",
+            "no es cierto",
+            "negativo",
+            "para nada",
+            "en absoluto"
+        ],
+        "response": [
+            "Entendido, no hay problema.",
+            "De acuerdo, lo dejamos así.",
+            "Si cambias de opinión, aquí estaré.",
+            "Está bien, dime si necesitas algo más.",
+            "Claro, no hay ningún inconveniente."
+        ]
+    },
+    {
+        "tag": "confirmacion",
+        "patterns": [
+            "sí",
+            "correcto",
+            "exacto",
+            "así es",
+            "afirmativo",
+            "claro que sí"
+        ],
+        "response": [
+            "Perfecto, seguimos adelante.",
+            "Genial, entendido.",
+            "¡Así es! Continuemos.",
+            "De acuerdo, avanzamos.",
+            "¡Claro que sí! Gracias por confirmar."
+        ]
+    }
+    ,{
+        "tag": "pregunta1",
+        "patterns": [
+            "que es un chatbot"
+        ],
+        "response": [
+            "un chatbot es un programa que intenta simular una conversacion normal con un humano"
+        ]
+    },
+    {
+        "tag": "pregunta2",
+        "patterns": [
+            "que es la fotosintesis"
+        ],
+        "response": [
+            "la fotosintesis es el proceso mediante el cual las plantas convierten la energia solar en energia quimica"
+        ]
+    },
+    {
+        "tag": "pregunta3",
+        "patterns": [
+            "que es el adn"
+        ],
+        "response": [
+            "el adn es la molecula que contiene la informacion genetica de los seres vivos"
+        ]
+    },
+    {
+        "tag": "pregunta4",
+        "patterns": [
+            "que es la gravedad"
+        ],
+        "response": [
+            "la gravedad es una fuerza que atrae los objetos hacia el centro de la tierra o hacia cualquier masa"
+        ]
+    },
+    {
+        "tag": "pregunta5",
+        "patterns": [
+            "que es un agujero negro"
+        ],
+        "response": [
+            "un agujero negro es una region del espacio con una gravedad tan fuerte que nada puede escapar de el"
+        ]
+    },
+    {
+        "tag": "pregunta6",
+        "patterns": [
+            "quien fue albert einstein"
+        ],
+        "response": [
+            "albert einstein fue un fisico conocido por desarrollar la teoria de la relatividad"
+        ]
+    },
+    {
+        "tag": "pregunta7",
+        "patterns": [
+            "que es un volcan"
+        ],
+        "response": [
+            "un volcan es una estructura geologica que expulsa lava gases y cenizas desde el interior de la tierra"
+        ]
+    },
+    {
+        "tag": "pregunta8",
+        "patterns": [
+            "que es la inteligencia artificial"
+        ],
+        "response": [
+            "la inteligencia artificial es el campo de la computacion que busca crear sistemas capaces de realizar tareas que requieren inteligencia humana"
+        ]
+    },
+    {
+        "tag": "pregunta9",
+        "patterns": [
+            "que es un ecosistema"
+        ],
+        "response": [
+            "un ecosistema es un conjunto de organismos vivos que interactuan entre si y con su entorno"
+        ]
+    },
+    {
+        "tag": "pregunta10",
+        "patterns": [
+            "que es la teoria del big bang"
+        ],
+        "response": [
+            "la teoria del big bang es la explicacion del origen del universo mediante una gran explosion ocurrida hace miles de millones de anos"
+        ]
+    },
+    {
+        "tag": "pregunta11",
+        "patterns": [
+            "que es un atomo"
+        ],
+        "response": [
+            "un atomo es la unidad basica de la materia formada por protones neutrones y electrones"
+        ]
+    },
+    {
+        "tag": "pregunta12",
+        "patterns": [
+            "que es el calentamiento global"
+        ],
+        "response": [
+            "el calentamiento global es el aumento de la temperatura promedio del planeta debido a actividades humanas"
+        ]
+    },
+    {
+        "tag": "pregunta13",
+        "patterns": [
+            "que es un planeta"
+        ],
+        "response": [
+            "un planeta es un cuerpo celeste que orbita una estrella y tiene suficiente gravedad para ser esferico"
+        ]
+    },
+    {
+        "tag": "pregunta14",
+        "patterns": [
+            "que es el agua"
+        ],
+        "response": [
+            "el agua es un compuesto quimico esencial para la vida formado por dos atomos de hidrogeno y uno de oxigeno"
+        ]
+    },
+    {
+        "tag": "pregunta15",
+        "patterns": [
+            "que es la electricidad"
+        ],
+        "response": [
+            "la electricidad es una forma de energia resultante del movimiento de cargas electricas"
+        ]
+    },
+    {
+        "tag": "pregunta16",
+        "patterns": [
+            "que es el sol"
+        ],
+        "response": [
+            "el sol es una estrella en el centro de nuestro sistema solar que proporciona luz y calor"
+        ]
+    },
+    {
+        "tag": "pregunta17",
+        "patterns": [
+            "que es el cuerpo humano"
+        ],
+        "response": [
+            "el cuerpo humano es una estructura biologica compleja formada por organos tejidos y sistemas"
+        ]
+    },
+    {
+        "tag": "pregunta18",
+        "patterns": [
+            "que es la luna"
+        ],
+        "response": [
+            "la luna es el unico satelite natural de la tierra y refleja la luz del sol"
+        ]
+    },
+    {
+        "tag": "pregunta19",
+        "patterns": [
+            "que es una celula"
+        ],
+        "response": [
+            "una celula es la unidad basica de los seres vivos que realiza funciones esenciales para la vida"
+        ]
+    },
+    {
+        "tag": "pregunta20",
+        "patterns": [
+            "que es una galaxia"
+        ],
+        "response": [
+            "una galaxia es un conjunto de estrellas planetas polvo y gas unidos por la gravedad"
+        ]
+    },{
+        "tag": "pregunta21",
+        "patterns": [
+            "que es un ecosistema marino"
+        ],
+        "response": [
+            "un ecosistema marino es un sistema biologico en el oceano que incluye organismos vivos y su entorno"
+        ]
+    },
+    {
+        "tag": "pregunta22",
+        "patterns": [
+            "que es la energia renovable"
+        ],
+        "response": [
+            "la energia renovable es energia obtenida de fuentes naturales que se regeneran como el sol y el viento"
+        ]
+    },
+    {
+        "tag": "pregunta23",
+        "patterns": [
+            "que es un tornado"
+        ],
+        "response": [
+            "un tornado es una columna de aire en rotacion que se extiende desde una tormenta hasta el suelo"
+        ]
+    },
+    {
+        "tag": "pregunta24",
+        "patterns": [
+            "que es el ciclo del agua"
+        ],
+        "response": [
+            "el ciclo del agua es el proceso mediante el cual el agua circula entre la superficie terrestre y la atmosfera"
+        ]
+    },
+    {
+        "tag": "pregunta25",
+        "patterns": [
+            "que es un bioma"
+        ],
+        "response": [
+            "un bioma es una region con condiciones climaticas y ecosistemas similares"
+        ]
+    },
+    {
+        "tag": "pregunta26",
+        "patterns": [
+            "que es un tsunami"
+        ],
+        "response": [
+            "un tsunami es una serie de olas gigantes causadas por terremotos o erupciones volcanicas submarinas"
+        ]
+    },
+    {
+        "tag": "pregunta27",
+        "patterns": [
+            "que es la biodiversidad"
+        ],
+        "response": [
+            "la biodiversidad es la variedad de formas de vida en un ecosistema o en todo el planeta"
+        ]
+    },
+    {
+        "tag": "pregunta28",
+        "patterns": [
+            "que es un continente"
+        ],
+        "response": [
+            "un continente es una gran masa de tierra que se extiende sobre la superficie terrestre"
+        ]
+    },
+    {
+        "tag": "pregunta29",
+        "patterns": [
+            "que es la velocidad de la luz"
+        ],
+        "response": [
+            "la velocidad de la luz es la rapidez con la que viaja la luz en el vacio aproximadamente 300000 kilometros por segundo"
+        ]
+    },
+    {
+        "tag": "pregunta30",
+        "patterns": [
+            "que es el cambio climatico"
+        ],
+        "response": [
+            "el cambio climatico es la alteracion de los patrones climaticos debido a factores naturales y actividades humanas"
+        ]
+    },
+    {
+        "tag": "pregunta31",
+        "patterns": [
+            "que es un terremoto"
+        ],
+        "response": [
+            "un terremoto es un temblor de la superficie terrestre causado por el movimiento de las placas tectonicas"
+        ]
+    },
+    {
+        "tag": "pregunta32",
+        "patterns": [
+            "que es la teoria de la evolucion"
+        ],
+        "response": [
+            "la teoria de la evolucion es la explicacion de como las especies cambian con el tiempo debido a la seleccion natural"
+        ]
+    },
+    {
+        "tag": "pregunta33",
+        "patterns": [
+            "que es un huracan"
+        ],
+        "response": [
+            "un huracan es una tormenta tropical con vientos muy fuertes que se forma sobre oceanos calidos"
+        ]
+    },
+    {
+        "tag": "pregunta34",
+        "patterns": [
+            "que es un eclipse solar"
+        ],
+        "response": [
+            "un eclipse solar ocurre cuando la luna pasa entre la tierra y el sol bloqueando la luz solar"
+        ]
+    },
+    {
+        "tag": "pregunta35",
+        "patterns": [
+            "que es un agujero de gusano"
+        ],
+        "response": [
+            "un agujero de gusano es una hipotesis en fisica que describe un atajo en el espacio tiempo"
+        ]
+    },
+    {
+        "tag": "pregunta36",
+        "patterns": [
+            "que es la atmosfera"
+        ],
+        "response": [
+            "la atmosfera es la capa de gases que rodea la tierra y protege la vida"
+        ]
+    },
+    {
+        "tag": "pregunta37",
+        "patterns": [
+            "que es el sistema solar"
+        ],
+        "response": [
+            "el sistema solar es un conjunto de planetas lunas asteroides y el sol como estrella central"
+        ]
+    },
+    {
+        "tag": "pregunta38",
+        "patterns": [
+            "que es la fotosintesis"
+        ],
+        "response": [
+            "la fotosintesis es el proceso por el cual las plantas producen energia a partir de la luz del sol"
+        ]
+    },
+    {
+        "tag": "pregunta39",
+        "patterns": [
+            "que es el adn"
+        ],
+        "response": [
+            "el adn es una molecula que contiene la informacion genetica de los organismos"
+        ]
+    },
+    {
+        "tag": "pregunta40",
+        "patterns": [
+            "que es la tabla periodica"
+        ],
+        "response": [
+            "la tabla periodica es una organizacion de los elementos quimicos segun sus propiedades"
+        ]
+    },
+    {
+        "tag": "pregunta41",
+        "patterns": [
+            "que es la energia eolica"
+        ],
+        "response": [
+            "la energia eolica es la energia obtenida del viento mediante aerogeneradores"
+        ]
+    },
+    {
+        "tag": "pregunta42",
+        "patterns": [
+            "que es un volcan"
+        ],
+        "response": [
+            "un volcan es una abertura en la corteza terrestre por donde emergen magma gases y cenizas"
+        ]
+    },
+    {
+        "tag": "pregunta43",
+        "patterns": [
+            "que es el efecto invernadero"
+        ],
+        "response": [
+            "el efecto invernadero es el calentamiento de la atmosfera terrestre causado por la acumulacion de ciertos gases"
+        ]
+    },
+    {
+        "tag": "pregunta44",
+        "patterns": [
+            "que es la contaminacion del agua"
+        ],
+        "response": [
+            "la contaminacion del agua es la presencia de sustancias nocivas que alteran su calidad natural"
+        ]
+    },
+    {
+        "tag": "pregunta45",
+        "patterns": [
+            "que es un ecosistema desertico"
+        ],
+        "response": [
+            "un ecosistema desertico es un habitat con condiciones aridas y poca vegetacion"
+        ]
+    },
+    {
+        "tag": "pregunta46",
+        "patterns": [
+            "que es el reciclaje"
+        ],
+        "response": [
+            "el reciclaje es el proceso de convertir residuos en nuevos productos utiles"
+        ]
+    },
+    {
+        "tag": "pregunta47",
+        "patterns": [
+            "que es la energia solar"
+        ],
+        "response": [
+            "la energia solar es la energia obtenida de la luz y el calor del sol"
+        ]
+    },
+    {
+        "tag": "pregunta48",
+        "patterns": [
+            "que es un ecosistema de tundra"
+        ],
+        "response": [
+            "un ecosistema de tundra es una region fria con vegetacion escasa y suelos helados"
+        ]
+    },
+    {
+        "tag": "pregunta49",
+        "patterns": [
+            "que es el cambio de clima"
+        ],
+        "response": [
+            "el cambio de clima es una variacion significativa en los patrones atmosfericos durante un largo periodo"
+        ]
+    },
+    {
+        "tag": "pregunta50",
+        "patterns": [
+            "que es la biotecnologia"
+        ],
+        "response": [
+            "la biotecnologia es el uso de organismos vivos para desarrollar productos y tecnologias"
+        ]
+    },
+    {
+        "tag": "pregunta51",
+        "patterns": [
+            "que es la lluvia acida"
+        ],
+        "response": [
+            "la lluvia acida es la precipitacion que contiene acidos formados por contaminantes atmosfericos"
+        ]
+    },
+    {
+        "tag": "pregunta52",
+        "patterns": [
+            "que es un bioma acuatico"
+        ],
+        "response": [
+            "un bioma acuatico es un ecosistema que se encuentra en cuerpos de agua como oceanos y rios"
+        ]
+    },
+    {
+        "tag": "pregunta53",
+        "patterns": [
+            "que es la energia hidraulica"
+        ],
+        "response": [
+            "la energia hidraulica es la energia obtenida del agua en movimiento como rios y presas"
+        ]
+    },
+    {
+        "tag": "pregunta54",
+        "patterns": [
+            "que es la selva tropical"
+        ],
+        "response": [
+            "una selva tropical es un bioma con alta biodiversidad y lluvias abundantes"
+        ]
+    },
+    {
+        "tag": "pregunta55",
+        "patterns": [
+            "que es el calentamiento global"
+        ],
+        "response": [
+            "el calentamiento global es el aumento de la temperatura media del planeta debido a actividades humanas"
+        ]
+    },
+    {
+        "tag": "pregunta56",
+        "patterns": [
+            "que es un bioma de sabana"
+        ],
+        "response": [
+            "un bioma de sabana es una region con praderas y arbustos, caracterizada por temporadas secas y lluviosas"
+        ]
+    },
+    {
+        "tag": "pregunta57",
+        "patterns": [
+            "que es el deshielo"
+        ],
+        "response": [
+            "el deshielo es el derretimiento de capas de hielo y glaciares debido al aumento de las temperaturas"
+        ]
+    },
+    {
+        "tag": "pregunta58",
+        "patterns": [
+            "que es un ecosistema terrestre"
+        ],
+        "response": [
+            "un ecosistema terrestre es un habitat que se encuentra sobre la superficie terrestre"
+        ]
+    },
+    {
+        "tag": "pregunta59",
+        "patterns": [
+            "que es un bioma polar"
+        ],
+        "response": [
+            "un bioma polar es una region con temperaturas extremadamente bajas y poca biodiversidad"
+        ]
+    },
+    {
+        "tag": "pregunta60",
+        "patterns": [
+            "que es un parque nacional"
+        ],
+        "response": [
+            "un parque nacional es un area protegida para conservar la biodiversidad y los ecosistemas"
+        ]
+    },
+    {
+        "tag": "pregunta61",
+        "patterns": [
+            "que es la biodiversidad"
+        ],
+        "response": [
+            "la biodiversidad es la variedad de formas de vida en un lugar determinado incluyendo plantas animales y microorganismos"
+        ]
+    },
+    {
+        "tag": "pregunta62",
+        "patterns": [
+            "que es el efecto de invernadero"
+        ],
+        "response": [
+            "el efecto de invernadero es un fenomeno natural que atrapa el calor en la atmosfera de la tierra"
+        ]
+    },
+    {
+        "tag": "pregunta63",
+        "patterns": [
+            "que es el desarrollo sostenible"
+        ],
+        "response": [
+            "el desarrollo sostenible es satisfacer las necesidades presentes sin comprometer los recursos del futuro"
+        ]
+    },
+    {
+        "tag": "pregunta64",
+        "patterns": [
+            "que es un ecosistema de bosque"
+        ],
+        "response": [
+            "un ecosistema de bosque es un area con una alta densidad de arboles que sustenta biodiversidad"
+        ]
+    },
+    {
+        "tag": "pregunta65",
+        "patterns": [
+            "que es la energia geotermica"
+        ],
+        "response": [
+            "la energia geotermica es la energia obtenida del calor almacenado dentro de la tierra"
+        ]
+    },
+    {
+        "tag": "pregunta66",
+        "patterns": [
+            "que es un animal en peligro de extincion"
+        ],
+        "response": [
+            "un animal en peligro de extincion es una especie que enfrenta un alto riesgo de desaparecer"
+        ]
+    },
+    {
+        "tag": "pregunta67",
+        "patterns": [
+            "que es la deforestacion"
+        ],
+        "response": [
+            "la deforestacion es la eliminacion de bosques para usos humanos como agricultura o urbanizacion"
+        ]
+    },
+    {
+        "tag": "pregunta68",
+        "patterns": [
+            "que es un arrecife de coral"
+        ],
+        "response": [
+            "un arrecife de coral es un ecosistema marino formado por corales y diversas especies marinas"
+        ]
+    },
+    {
+        "tag": "pregunta69",
+        "patterns": [
+            "que es la contaminacion del suelo"
+        ],
+        "response": [
+            "la contaminacion del suelo es la presencia de sustancias toxicas que alteran su calidad y fertilidad"
+        ]
+    },
+    {
+        "tag": "pregunta70",
+        "patterns": [
+            "que es el ciclo del agua"
+        ],
+        "response": [
+            "el ciclo del agua es el movimiento continuo del agua en la tierra incluyendo evaporacion condensacion y precipitacion"
+        ]
+    },
+    {
+        "tag": "pregunta71",
+        "patterns": [
+            "por que a yeinny le gustan las patas?"
+        ],
+        "response": [
+            "en base a mi experiencia \"yeinny\" tiene un fetiche con las patas de steven"
+        ]
+    }
+  ]
+}

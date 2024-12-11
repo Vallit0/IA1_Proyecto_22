@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot con TensorFlow.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chat-output {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .chat-output p {
+            margin: 5px 0;
+        }
+        input[type="text"] {
+            width: calc(100% - 100px);
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Chatbot</h2>
+        <div id="chatOutput" class="chat-output"></div>
+        <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
+        <button onclick="handleChat()">Enviar</button>
+    </div>
+
+    <script>
+        let model;
+        let vocabulary = [];
+        let labels = [];
+        let trainingData = [];
+
+        // Cargar el modelo
+        async function loadModel() {
+            try {
+                model = await tf.loadLayersModel('http://localhost:8080/model.json');
+                console.log('Modelo cargado exitosamente');
+            } catch (error) {
+                console.error('Error al cargar el modelo:', error);
+            }
+        }
+
+        // Cargar los datos de entrenamiento desde el archivo JSON
+        async function loadTrainingData() {
+            try {
+                const response = await fetch('http://localhost:8080/content2.json'); // Cambia esta ruta si es necesario
+                const data = await response.json();
+                trainingData = data.intents;
+
+                // Construir vocabulario y etiquetas
+                trainingData.forEach((item) => {
+                    item.patterns.forEach((pattern) => {
+                        const words = pattern.toLowerCase().split(' ');
+                        words.forEach((word) => {
+                            if (!vocabulary.includes(word)) {
+                                vocabulary.push(word);
+                            }
+                        });
+                    });
+                    if (!labels.includes(item.tag)) {
+                        labels.push(item.tag);
+                    }
+                });
+
+                console.log('Datos de entrenamiento cargados:', { vocabulary, labels });
+            } catch (error) {
+                console.error('Error al cargar el archivo JSON:', error);
+            }
+        }
+
+        // Preprocesar la entrada del usuario
+        function preprocessInput(input) {
+            const words = input.toLowerCase().split(' ');
+            const bagOfWords = vocabulary.map((word) => (words.includes(word) ? 1 : 0));
+            return tf.tensor2d([bagOfWords]);
+        }
+
+        // Hacer la predicción
+        function predictTag(input) {
+            const inputTensor = preprocessInput(input);
+            const prediction = model.predict(inputTensor);
+            const predictedIndex = prediction.argMax(1).dataSync()[0];
+            return labels[predictedIndex];
+        }
+
+        // Obtener una respuesta basada en la etiqueta
+        function getResponse(tag) {
+            const intent = trainingData.find((intent) => intent.tag === tag);
+            if (intent) {
+                const responses = intent.response;
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+            return "Lo siento, no entiendo tu pregunta.";
+        }
+
+        // Manejar la interacción del chat
+        async function handleChat() {
+            const userInput = document.getElementById('userInput').value.trim();
+            if (!userInput) return;
+
+            const chatOutput = document.getElementById('chatOutput');
+            chatOutput.innerHTML += `<p><b>Usuario:</b> ${userInput}</p>`;
+
+            try {
+                const predictedTag = predictTag(userInput);
+                const response = getResponse(predictedTag);
+                chatOutput.innerHTML += `<p><b>Bot:</b> ${response}</p>`;
+            } catch (error) {
+                console.error('Error al procesar el mensaje:', error);
+                chatOutput.innerHTML += `<p><b>Bot:</b> Hubo un problema al procesar tu mensaje.</p>`;
+            }
+
+            document.getElementById('userInput').value = '';
+            chatOutput.scrollTop = chatOutput.scrollHeight; // Desplaza al final del chat
+        }
+
+        // Inicializar la aplicación
+        async function initialize() {
+            await loadModel();
+            await loadTrainingData();
+        }
+
+        initialize();
+    </script>
+</body>
+</html>
