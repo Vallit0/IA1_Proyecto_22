@@ -1,0 +1,106 @@
+{
+  "intents": [
+    {
+      "tag": "casual_talk",
+      "patterns": [
+        "¿cómo estás?",
+        "¿qué tal?",
+        "how are you?",
+        "what's up?"
+      ],
+      "response_es": [
+        "Estoy bien, ¿y tú?",
+        "Todo en orden, ¿qué tal tú?"
+      ],
+      "response_en": [
+        "I'm fine, how about you?",
+        "All good, what about you?"
+      ]
+    },
+    {
+      "tag": "weather",
+      "patterns": [
+        "¿cómo está el clima?",
+        "¿lloverá hoy?",
+        "how's the weather?",
+        "is it raining?"
+      ],
+      "response_es": [
+        "No puedo predecir el clima, pero puedes consultar una aplicación de clima.",
+        "Depende de tu ubicación, revisa una aplicación de clima para obtener detalles."
+      ],
+      "response_en": [
+        "I can't predict the weather, but you can check a weather app.",
+        "It depends on your location, check a weather app for details."
+      ]
+    },
+    {
+      "tag": "jokes",
+      "patterns": [
+        "cuéntame un chiste",
+        "dime algo gracioso",
+        "tell me a joke",
+        "make me laugh"
+      ],
+      "response_es": [
+        "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+        "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas!"
+      ],
+      "response_en": [
+        "Why did the math book look sad? Because it had too many problems!",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!"
+      ]
+    },
+    {
+      "tag": "math",
+      "patterns": [
+        "¿cuánto es 2 + 2?",
+        "¿puedes resolver 100 / 4?",
+        "what is 2 + 2?",
+        "can you solve 100 / 4?"
+      ],
+      "response_es": [
+        "2 + 2 es 4.",
+        "100 / 4 es 25."
+      ],
+      "response_en": [
+        "2 + 2 is 4.",
+        "100 / 4 is 25."
+      ]
+    },
+    {
+      "tag": "concept_definition",
+      "patterns": [
+        "¿qué es la inteligencia artificial?",
+        "defíneme la gravedad",
+        "what is artificial intelligence?",
+        "define gravity"
+      ],
+      "response_es": [
+        "La inteligencia artificial es la simulación de la inteligencia humana por máquinas.",
+        "La gravedad es la fuerza que atrae los objetos hacia el centro de la Tierra."
+      ],
+      "response_en": [
+        "Artificial intelligence is the simulation of human intelligence by machines.",
+        "Gravity is the force that attracts objects toward the center of the Earth."
+      ]
+    },
+    {
+      "tag": "motivation",
+      "patterns": [
+        "necesito motivación",
+        "dame inspiración",
+        "I need motivation",
+        "inspire me"
+      ],
+      "response_es": [
+        "¡Tú puedes lograrlo! Nunca dudes de ti mismo.",
+        "Recuerda que cada día es una nueva oportunidad."
+      ],
+      "response_en": [
+        "You can do it! Never doubt yourself.",
+        "Remember that every day is a new opportunity."
+      ]
+    }
+  ]
+}

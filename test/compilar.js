@@ -1,21 +1,22 @@
-import * as tf from '@tensorflow/tfjs-node'; // Para Node.js
+import * as tf from '@tensorflow/tfjs-node'; 
 import fs from 'fs';
 
-const trainingData = JSON.parse(fs.readFileSync('content2.json', 'utf8')).intents;
+const trainingData = JSON.parse(fs.readFileSync('bilingual.json', 'utf8')).intents;
 
-const vocabulary = [];
+const vocabulary_es = [];
+const vocabulary_en = [];
 const labels = [];
 
-trainingData.forEach((item, index) => {
+trainingData.forEach((item) => {
     item.patterns.forEach(pattern => {
+        const isSpanish = /[áéíóúñ]/.test(pattern) || /¿|¡/.test(pattern);
+        const vocabulary = isSpanish ? vocabulary_es : vocabulary_en;
         const words = pattern.toLowerCase().split(' ');
         words.forEach(word => {
-            if (!vocabulary.includes(word)) {
-                vocabulary.push(word);
-            }
+            if (!vocabulary.includes(word)) vocabulary.push(word);
         });
     });
-    labels.push(item.tag);
+    if (!labels.includes(item.tag)) labels.push(item.tag);
 });
 
 const xs = [];
@@ -23,9 +24,19 @@ const ys = [];
 
 trainingData.forEach((item) => {
     item.patterns.forEach((pattern) => {
+        const isSpanish = /[áéíóúñ]/.test(pattern) || /¿|¡/.test(pattern);
         const words = pattern.toLowerCase().split(' ');
-        const bagOfWords = vocabulary.map(word => words.includes(word) ? 1 : 0);
-        xs.push(bagOfWords);
+
+        const bagOfWords = new Array(vocabulary_es.length + vocabulary_en.length).fill(0);
+        words.forEach(word => {
+            const index = (isSpanish ? vocabulary_es : vocabulary_en).indexOf(word);
+            if (index > -1) bagOfWords[index] = 1;
+        });
+
+        const languageFeature = isSpanish ? [1] : [0];
+        const completeFeatures = bagOfWords.concat(languageFeature);
+        
+        xs.push(completeFeatures);
         
         const labelIndex = labels.indexOf(item.tag);
         const oneHotLabel = new Array(labels.length).fill(0);
@@ -38,9 +49,10 @@ const xsTensor = tf.tensor2d(xs);
 const ysTensor = tf.tensor2d(ys);
 
 const model = tf.sequential();
+const totalVocabularySize = vocabulary_es.length + vocabulary_en.length + 1;
 
-model.add(tf.layers.dense({ inputShape: [vocabulary.length], units: 8, activation: 'relu' }));
-model.add(tf.layers.dense({ units: 8, activation: 'relu' }));
+model.add(tf.layers.dense({ inputShape: [totalVocabularySize], units: 16, activation: 'relu' }));
+model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
 model.add(tf.layers.dense({ units: labels.length, activation: 'softmax' }));
 
 model.compile({
@@ -50,24 +62,8 @@ model.compile({
 });
 
 async function trainModel() {
-    console.log('Entrenando el modelo...');
-    await model.fit(xsTensor, ysTensor, {
-        epochs: 100,
-        callbacks: {
-            onEpochEnd: (epoch, logs) => {
-                console.log(`Época: ${epoch + 1} Pérdida: ${logs.loss.toFixed(4)} Precisión: ${logs.acc.toFixed(4)}`);
-            }
-        }
-    });
-    console.log('Entrenamiento completado!');
-    
-    // Guardar el modelo
-    try {
-        await model.save('file://./chatbot_model');
-        console.log('Modelo guardado!');
-    } catch (err) {
-        console.error('Error al guardar el modelo:', err);
-    }
+    await model.fit(xsTensor, ysTensor, { epochs: 2000 });
+    await model.save('file://./chatbot_model');
 }
 
 trainModel();
