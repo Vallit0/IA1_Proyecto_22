@@ -1,172 +1,129 @@
 {
   "intents": [
     {
-      "tag": "casual_talk",
+      "tag": "greeting",
       "patterns": [
-        "¿cómo estás?",
-        "¿qué tal?",
-        "¿cómo va tu día?",
-        "¿todo bien?",
-        "¿qué haces?",
-        "how are you?",
-        "what's up?",
-        "how's your day?",
-        "are you okay?",
-        "how are you feeling?"
+        "hola",
+        "buenos días",
+        "buenas tardes",
+        "hello",
+        "good morning",
+        "good afternoon"
       ],
       "response_es": [
-        "Estoy bien, ¿y tú?",
-        "Todo en orden, ¿qué tal tú?",
-        "¡Genial! ¿Cómo estás tú?",
-        "Aquí, listo para ayudarte, ¿qué necesitas?",
-        "Perfecto, ¿y tú cómo estás?"
+        "Hola, ¿cómo estás?",
+        "¡Hola! ¿Cómo te encuentras hoy?",
+        "¡Hola! ¿En qué puedo ayudarte?"
       ],
       "response_en": [
-        "I'm fine, how about you?",
-        "All good, what about you?",
-        "Great! How are you?",
-        "Here, ready to assist you, what do you need?",
-        "Perfect, and how are you?"
+        "Hello, how are you?",
+        "Hi! How are you doing today?",
+        "Hello! How can I assist you?"
       ]
     },
     {
-      "tag": "weather",
+      "tag": "farewell",
       "patterns": [
-        "¿cómo está el clima?",
-        "¿lloverá hoy?",
-        "¿hace frío?",
-        "¿hace calor?",
-        "¿qué temperatura hay?",
-        "how's the weather?",
-        "is it raining?",
-        "is it hot today?",
-        "is it cold today?",
-        "what's the temperature?"
+        "adiós",
+        "hasta luego",
+        "chao",
+        "goodbye",
+        "see you later",
+        "bye"
       ],
       "response_es": [
-        "No puedo predecir el clima, pero puedes consultar una aplicación de clima.",
-        "Depende de tu ubicación, revisa una aplicación de clima para obtener detalles.",
-        "Puedes consultar la temperatura en línea o usando una aplicación de clima.",
-        "No tengo acceso a la información meteorológica en tiempo real.",
-        "Revisa una app de clima para obtener el pronóstico."
+        "¡Adiós! Cuídate.",
+        "Hasta luego, ¡que tengas un gran día!",
+        "Nos vemos pronto."
       ],
       "response_en": [
-        "I can't predict the weather, but you can check a weather app.",
-        "It depends on your location, check a weather app for details.",
-        "You can check the temperature online or using a weather app.",
-        "I don't have access to real-time weather information.",
-        "Check a weather app to get the forecast."
+        "Goodbye! Take care.",
+        "See you later, have a great day!",
+        "See you soon."
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "necesito ayuda",
+        "puedes ayudarme?",
+        "me puedes ayudar?",
+        "I need help",
+        "can you help me?",
+        "help me"
+      ],
+      "response_es": [
+        "Claro, ¿cómo puedo ayudarte?",
+        "Estoy aquí para ayudarte, dime, ¿qué necesitas?",
+        "Por supuesto, cuéntame en qué necesitas ayuda."
+      ],
+      "response_en": [
+        "Of course, how can I help you?",
+        "I'm here to help, tell me, what do you need?",
+        "Sure, let me know what you need help with."
       ]
     },
     {
       "tag": "jokes",
       "patterns": [
         "cuéntame un chiste",
-        "dime algo gracioso",
-        "hazme reír",
         "dime un chiste",
+        "cuéntame algo gracioso",
         "tell me a joke",
         "make me laugh",
-        "say something funny",
-        "give me a joke",
-        "do you know any jokes?"
+        "give me a joke"
       ],
       "response_es": [
         "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
         "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas!",
-        "¿Cuál es el colmo de un jardinero? ¡Que lo dejen plantado!",
-        "¿Por qué los pájaros no usan Facebook? ¡Porque ya tienen Twitter!",
-        "¿Sabías que los peces nunca mienten? ¡Porque siempre son sinceros!"
+        "¿Cuál es el colmo de un jardinero? ¡Que lo dejen plantado!"
       ],
       "response_en": [
         "Why did the math book look sad? Because it had too many problems!",
         "Why did the scarecrow win an award? Because he was outstanding in his field!",
-        "Why don't skeletons fight each other? They don't have the guts!",
-        "Why did the bicycle fall over? Because it was two-tired!",
-        "Why don't scientists trust atoms? Because they make up everything!"
+        "Why don't skeletons fight each other? They don't have the guts!"
       ]
     },
     {
-      "tag": "math",
+      "tag": "weather",
       "patterns": [
-        "¿cuánto es 2 + 2?",
-        "¿cuánto es 10 x 5?",
-        "¿puedes resolver 100 / 4?",
-        "¿cuál es la raíz cuadrada de 81?",
-        "what is 2 + 2?",
-        "what is 10 x 5?",
-        "can you solve 100 / 4?",
-        "what is the square root of 81?",
-        "solve 25 + 75"
+        "¿cómo está el clima?",
+        "¿va a llover hoy?",
+        "¿qué temperatura hay?",
+        "how's the weather?",
+        "is it going to rain today?",
+        "what's the temperature?"
       ],
       "response_es": [
-        "2 + 2 es 4.",
-        "10 x 5 es 50.",
-        "La raíz cuadrada de 81 es 9.",
-        "100 / 4 es 25.",
-        "25 + 75 es 100."
+        "No tengo acceso a información meteorológica en tiempo real, pero puedes consultar una aplicación de clima.",
+        "Lo siento, no puedo predecir el clima. Intenta buscar en una app de clima."
       ],
       "response_en": [
-        "2 + 2 is 4.",
-        "10 x 5 is 50.",
-        "The square root of 81 is 9.",
-        "100 / 4 is 25.",
-        "25 + 75 is 100."
-      ]
-    },
-    {
-      "tag": "concept_definition",
-      "patterns": [
-        "¿qué es la inteligencia artificial?",
-        "defíneme la gravedad",
-        "¿qué es el ADN?",
-        "¿qué es la fotosíntesis?",
-        "what is artificial intelligence?",
-        "define gravity",
-        "what is DNA?",
-        "what is photosynthesis?",
-        "can you explain photosynthesis?"
-      ],
-      "response_es": [
-        "La inteligencia artificial es la simulación de la inteligencia humana por máquinas.",
-        "La gravedad es la fuerza que atrae los objetos hacia el centro de la Tierra.",
-        "El ADN es la molécula que contiene la información genética de los seres vivos.",
-        "La fotosíntesis es el proceso mediante el cual las plantas convierten la luz solar en energía química."
-      ],
-      "response_en": [
-        "Artificial intelligence is the simulation of human intelligence by machines.",
-        "Gravity is the force that attracts objects toward the center of the Earth.",
-        "DNA is the molecule that contains the genetic information of living organisms.",
-        "Photosynthesis is the process by which plants convert sunlight into chemical energy."
+        "I don't have access to real-time weather information, but you can check a weather app.",
+        "I'm sorry, I can't predict the weather. Try checking a weather app."
       ]
     },
     {
       "tag": "motivation",
       "patterns": [
         "necesito motivación",
-        "dame inspiración",
         "anímame",
-        "motívame",
+        "dame inspiración",
         "I need motivation",
-        "inspire me",
-        "encourage me",
         "motivate me",
-        "give me some inspiration"
+        "inspire me"
       ],
       "response_es": [
-        "¡Tú puedes lograrlo! Nunca dudes de ti mismo.",
-        "Recuerda que cada día es una nueva oportunidad.",
-        "El esfuerzo siempre tiene su recompensa.",
-        "Confía en ti, estás más cerca de lo que crees.",
-        "¡Eres increíble! No te detengas."
+        "¡Tú puedes lograr todo lo que te propongas!",
+        "No te rindas, cada día es una nueva oportunidad.",
+        "Confía en ti mismo, tienes todo lo necesario para triunfar."
       ],
       "response_en": [
-        "You can do it! Never doubt yourself.",
-        "Remember that every day is a new opportunity.",
-        "Effort always pays off.",
-        "Trust yourself, you are closer than you think.",
-        "You are amazing! Don't stop."
+        "You can achieve anything you set your mind to!",
+        "Don't give up, every day is a new opportunity.",
+        "Believe in yourself, you have everything you need to succeed."
       ]
     }
   ]
 }
+

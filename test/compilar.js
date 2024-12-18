@@ -20,7 +20,8 @@ trainingData.forEach((item) => {
 });
 
 const xs = [];
-const ys = [];
+const ys_intent = [];
+const ys_language = [];
 
 trainingData.forEach((item) => {
     item.patterns.forEach((pattern) => {
@@ -38,32 +39,61 @@ trainingData.forEach((item) => {
         
         xs.push(completeFeatures);
         
+        // ** Codificación One-Hot de la intención (tag) **
         const labelIndex = labels.indexOf(item.tag);
         const oneHotLabel = new Array(labels.length).fill(0);
         oneHotLabel[labelIndex] = 1;
-        ys.push(oneHotLabel);
+        ys_intent.push(oneHotLabel);
+
+        // ** Etiqueta de idioma (0 = inglés, 1 = español) **
+        ys_language.push([isSpanish ? 1 : 0]);
     });
 });
 
 const xsTensor = tf.tensor2d(xs);
-const ysTensor = tf.tensor2d(ys);
+const ysIntentTensor = tf.tensor2d(ys_intent);
+const ysLanguageTensor = tf.tensor2d(ys_language);
 
-const model = tf.sequential();
 const totalVocabularySize = vocabulary_es.length + vocabulary_en.length + 1;
 
-model.add(tf.layers.dense({ inputShape: [totalVocabularySize], units: 16, activation: 'relu' }));
-model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
-model.add(tf.layers.dense({ units: labels.length, activation: 'softmax' }));
+// ** Modelo con dos salidas: predicción de la intención y predicción del idioma **
+const input = tf.input({ shape: [totalVocabularySize] });
+const hidden1 = tf.layers.dense({ units: 32, activation: 'relu' }).apply(input);
+const hidden2 = tf.layers.dense({ units: 32, activation: 'relu' }).apply(hidden1);
+const hidden3 = tf.layers.dense({ units: 16, activation: 'relu' }).apply(hidden2);
+
+const intentOutput = tf.layers.dense({ units: labels.length, activation: 'softmax', name: 'intent_output' }).apply(hidden3);
+const languageOutput = tf.layers.dense({ units: 1, activation: 'sigmoid', name: 'language_output' }).apply(hidden3);
+
+const model = tf.model({ inputs: input, outputs: [intentOutput, languageOutput] });
 
 model.compile({
     optimizer: 'adam',
-    loss: 'categoricalCrossentropy',
+    loss: ['categoricalCrossentropy', 'binaryCrossentropy'],
     metrics: ['accuracy']
 });
 
 async function trainModel() {
-    await model.fit(xsTensor, ysTensor, { epochs: 2000 });
+    console.log('Entrenando el modelo...');
+    await model.fit(xsTensor, { intent_output: ysIntentTensor, language_output: ysLanguageTensor }, { 
+        epochs: 100, 
+        batchSize: 16,
+        callbacks: {
+            onEpochEnd: (epoch, logs) => {
+                const intentAcc = logs.intent_output_acc !== undefined ? logs.intent_output_acc.toFixed(4) : 'N/A';
+                const languageAcc = logs.language_output_acc !== undefined ? logs.language_output_acc.toFixed(4) : 'N/A';
+                const intentLoss = logs.intent_output_loss !== undefined ? logs.intent_output_loss.toFixed(4) : 'N/A';
+                const languageLoss = logs.language_output_loss !== undefined ? logs.language_output_loss.toFixed(4) : 'N/A';
+                const totalLoss = logs.loss !== undefined ? logs.loss.toFixed(4) : 'N/A';
+                
+                console.log(`Época: ${epoch + 1} - Pérdida Total: ${totalLoss}`);
+                console.log(`Intención - Precisión: ${intentAcc} - Pérdida: ${intentLoss}`);
+                console.log(`Idioma - Precisión: ${languageAcc} - Pérdida: ${languageLoss}`);
+            }
+        }
+    });
     await model.save('file://./chatbot_model');
+    console.log('Modelo guardado correctamente.');
 }
 
 trainModel();
