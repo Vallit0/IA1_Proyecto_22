@@ -4,85 +4,66 @@ import readline from 'readline';
 
 let model;
 
-// ** Paso 1: Cargar el modelo previamente entrenado **
+// ** Cargar modelo y vocabulario **
 async function loadModel() {
     console.log('Cargando el modelo...');
     model = await tf.loadLayersModel('file://./chatbot_model/model.json');
     console.log('Modelo cargado correctamente.');
+    const vocabulary = JSON.parse(fs.readFileSync('vocabulary.json', 'utf8'));
+    return vocabulary;
 }
 
-const trainingData = JSON.parse(fs.readFileSync('bilingual.json', 'utf8')).intents;
-
-const vocabulary_es = [];
-const vocabulary_en = [];
-
-trainingData.forEach((item) => {
-    item.patterns.forEach(pattern => {
-        const isSpanish = /[áéíóúñ]/.test(pattern) || /¿|¡/.test(pattern);
-        const vocabulary = isSpanish ? vocabulary_es : vocabulary_en;
-        const words = pattern.toLowerCase().split(' ');
-        words.forEach(word => {
-            if (!vocabulary.includes(word)) vocabulary.push(word);
-        });
-    });
-});
-
-// ** Paso 2: Crear el bag-of-words para la entrada del usuario **
-function createBagOfWords(inputText) {
-    const isSpanish = /[áéíóúñ]/.test(inputText) || /¿|¡/.test(inputText);
+function createBagOfWords(inputText, vocabulary) {
     const words = inputText.toLowerCase().split(' ');
-
-    const bagOfWords = new Array(vocabulary_es.length + vocabulary_en.length).fill(0);
+    const bagOfWords = new Array(vocabulary.length).fill(0);
     words.forEach(word => {
-        const index = (isSpanish ? vocabulary_es : vocabulary_en).indexOf(word);
+        const index = vocabulary.indexOf(word);
         if (index > -1) bagOfWords[index] = 1;
     });
 
-    // ** Agregar la variable de idioma (1 para español, 0 para inglés) **
-    const languageFeature = isSpanish ? [1] : [0];
-    const completeFeatures = bagOfWords.concat(languageFeature);
-
-    // Asegúrate de que la longitud sea consistente con la entrada que espera el modelo
-    while (completeFeatures.length < vocabulary_es.length + vocabulary_en.length + 1) {
-        completeFeatures.push(0);
-    }
-
-    console.log('Tamaño de bag-of-words generado:', completeFeatures.length);
-    return completeFeatures;
+    // ** Agregar la variable binaria (idioma) **
+    bagOfWords.push(0); // No sabemos si es inglés o español en esta fase
+    return bagOfWords;
 }
 
-// ** Paso 3: Usar el modelo para hacer predicciones de intención e idioma **
-async function predict(inputText) {
-    if (!model) {
-        console.log('El modelo aún no ha sido cargado.');
-        return;
-    }
-
-    const inputFeatures = createBagOfWords(inputText);
+async function predict(inputText, vocabulary) {
+    const inputFeatures = createBagOfWords(inputText, vocabulary);
     const inputTensor = tf.tensor2d([inputFeatures]);
-    console.log('Forma del tensor de entrada:', inputTensor.shape); 
-
-    // ** Realizar la predicción de la intención y el idioma **
+    
     const [intentPrediction, languagePrediction] = model.predict(inputTensor);
+
+    // ** Predicción de la intención **
+    const intentProbabilities = await intentPrediction.data();
     const intentIndex = intentPrediction.argMax(1).dataSync()[0];
-
-    // ** Etiquetas de la intención (extraer del dataset) **
-    const labels = trainingData.map(intent => intent.tag);
-    const predictedTag = labels[intentIndex];
-
-    // ** Detectar el idioma (0 = inglés, 1 = español) **
+    
+    // ** Predicción del idioma **
     const languageProb = languagePrediction.dataSync()[0];
-    const isSpanish = languageProb >= 0.5; // español si probabilidad >= 0.5
+    const isSpanish = languageProb >= 0.5;
 
-    console.log(`Etiqueta predicha: ${predictedTag}`);
-    console.log(`Idioma detectado: ${isSpanish ? 'Español' : 'Inglés'} (probabilidad: ${languageProb.toFixed(4)})\n`);
+    // ** Imprimir la probabilidad de todas las intenciones **
+    console.log('🔍 Probabilidades de cada intención:');
+    intentProbabilities.forEach((prob, index) => {
+        console.log(`Intención ${index}: ${prob.toFixed(4)}`);
+    });
 
+    // ** Imprimir la probabilidad de idioma **
+    console.log('🌐 Probabilidad de español: ', languageProb.toFixed(4));
+    console.log('🌐 Probabilidad de inglés: ', (1 - languageProb).toFixed(4));
+
+    // ** Imprimir la etiqueta predicha **
+    const response = isSpanish ? "Idioma detectado: Español" : "Idioma detectado: Inglés";
+    console.log(`🤖 Intención predicha: ${intentIndex}`);
+    console.log(`🤖 ${response}`);
+    
+    // ** Liberar la memoria de los tensores para evitar fuga de memoria **
     inputTensor.dispose();
-    return predictedTag;
+    intentPrediction.dispose();
+    languagePrediction.dispose();
+
+    return response;
 }
 
-// ** Paso 4: Interfaz de línea de comandos (consola) **
-function startChat() {
+function startChat(vocabulary) {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
@@ -97,14 +78,14 @@ function startChat() {
             rl.close();
             process.exit(0);
         } else {
-            await predict(input);
+            const response = await predict(input, vocabulary);
+            console.log(`🤖 Respuesta: ${response}\n`);
         }
     });
 }
 
-// ** Cargar el modelo y comenzar la conversación **
 (async () => {
-    await loadModel();
-    startChat();
+    const vocabulary = await loadModel();
+    startChat(vocabulary);
 })();
 

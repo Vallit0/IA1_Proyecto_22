@@ -1,0 +1,9 @@
+1. Probar con mas o menos epochs (Sobreentrenar) 
+2. Probar con datasets distintos 
+3. Probar con Modelo distinto 
+
+PROOBLEMAS COMUNES 
+Cuando se cambia el data set, una red neuronal [][][], la capa de entrada tiene que cambiar
+su tamano cuando se cambian los datasets. 
+
+

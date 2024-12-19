@@ -6,19 +6,29 @@
         "hola",
         "buenos días",
         "buenas tardes",
+        "buenas noches",
         "hello",
+        "hi",
         "good morning",
-        "good afternoon"
+        "good afternoon",
+        "good evening",
+        "hey"
       ],
       "response_es": [
         "Hola, ¿cómo estás?",
         "¡Hola! ¿Cómo te encuentras hoy?",
-        "¡Hola! ¿En qué puedo ayudarte?"
+        "¡Hola! ¿En qué puedo ayudarte?",
+        "Buenos días, ¿qué tal tu día?",
+        "Buenas tardes, ¿necesitas algo?",
+        "Buenas noches, ¿cómo puedo asistirte?"
       ],
       "response_en": [
         "Hello, how are you?",
         "Hi! How are you doing today?",
-        "Hello! How can I assist you?"
+        "Hello! How can I assist you?",
+        "Good morning! How's your day going?",
+        "Good afternoon, how can I help you?",
+        "Good evening! Do you need any assistance?"
       ]
     },
     {
@@ -27,19 +37,27 @@
         "adiós",
         "hasta luego",
         "chao",
+        "me despido",
+        "nos vemos",
         "goodbye",
         "see you later",
-        "bye"
+        "bye",
+        "take care",
+        "see you soon"
       ],
       "response_es": [
         "¡Adiós! Cuídate.",
         "Hasta luego, ¡que tengas un gran día!",
-        "Nos vemos pronto."
+        "Nos vemos pronto.",
+        "Chao, ¡cuídate mucho!",
+        "Hasta la próxima."
       ],
       "response_en": [
         "Goodbye! Take care.",
         "See you later, have a great day!",
-        "See you soon."
+        "See you soon.",
+        "Bye! Take care of yourself.",
+        "Until next time."
       ]
     },
     {
@@ -50,17 +68,24 @@
         "me puedes ayudar?",
         "I need help",
         "can you help me?",
-        "help me"
+        "help me",
+        "I have a problem",
+        "I'm stuck",
+        "I need support"
       ],
       "response_es": [
         "Claro, ¿cómo puedo ayudarte?",
         "Estoy aquí para ayudarte, dime, ¿qué necesitas?",
-        "Por supuesto, cuéntame en qué necesitas ayuda."
+        "Por supuesto, cuéntame en qué necesitas ayuda.",
+        "¿En qué puedo asistirte?",
+        "Dime cómo puedo apoyarte."
       ],
       "response_en": [
         "Of course, how can I help you?",
         "I'm here to help, tell me, what do you need?",
-        "Sure, let me know what you need help with."
+        "Sure, let me know what you need help with.",
+        "What do you need assistance with?",
+        "Tell me how I can support you."
       ]
     },
     {
@@ -76,12 +101,14 @@
       "response_es": [
         "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
         "¿Por qué el libro de matemáticas estaba triste? ¡Porque tenía demasiados problemas!",
-        "¿Cuál es el colmo de un jardinero? ¡Que lo dejen plantado!"
+        "¿Cuál es el colmo de un jardinero? ¡Que lo dejen plantado!",
+        "¿Sabes por qué el tomate se sonrojó? Porque vio la ensalada."
       ],
       "response_en": [
         "Why did the math book look sad? Because it had too many problems!",
         "Why did the scarecrow win an award? Because he was outstanding in his field!",
-        "Why don't skeletons fight each other? They don't have the guts!"
+        "Why don't skeletons fight each other? They don't have the guts!",
+        "Why did the tomato blush? Because it saw the salad dressing."
       ]
     },
     {
@@ -92,15 +119,19 @@
         "¿qué temperatura hay?",
         "how's the weather?",
         "is it going to rain today?",
-        "what's the temperature?"
+        "what's the temperature?",
+        "is it hot today?",
+        "is it cold today?"
       ],
       "response_es": [
         "No tengo acceso a información meteorológica en tiempo real, pero puedes consultar una aplicación de clima.",
-        "Lo siento, no puedo predecir el clima. Intenta buscar en una app de clima."
+        "Lo siento, no puedo predecir el clima. Intenta buscar en una app de clima.",
+        "No puedo predecir el clima, pero puedes buscarlo en una aplicación meteorológica."
       ],
       "response_en": [
         "I don't have access to real-time weather information, but you can check a weather app.",
-        "I'm sorry, I can't predict the weather. Try checking a weather app."
+        "I'm sorry, I can't predict the weather. Try checking a weather app.",
+        "I can't predict the weather, but you can look it up on a weather app."
       ]
     },
     {
@@ -111,17 +142,65 @@
         "dame inspiración",
         "I need motivation",
         "motivate me",
-        "inspire me"
+        "inspire me",
+        "give me some motivation"
       ],
       "response_es": [
         "¡Tú puedes lograr todo lo que te propongas!",
         "No te rindas, cada día es una nueva oportunidad.",
-        "Confía en ti mismo, tienes todo lo necesario para triunfar."
+        "Confía en ti mismo, tienes todo lo necesario para triunfar.",
+        "¡Eres más fuerte de lo que crees!"
       ],
       "response_en": [
         "You can achieve anything you set your mind to!",
         "Don't give up, every day is a new opportunity.",
-        "Believe in yourself, you have everything you need to succeed."
+        "Believe in yourself, you have everything you need to succeed.",
+        "You are stronger than you think!"
+      ]
+    },
+    {
+      "tag": "gratitude",
+      "patterns": [
+        "gracias",
+        "muchas gracias",
+        "te lo agradezco",
+        "thank you",
+        "thanks a lot",
+        "thanks",
+        "I appreciate it"
+      ],
+      "response_es": [
+        "De nada, ¡para eso estoy!",
+        "Con gusto, avísame si necesitas algo más.",
+        "Es un placer ayudarte, ¡gracias a ti!"
+      ],
+      "response_en": [
+        "You're welcome, that's what I'm here for!",
+        "With pleasure, let me know if you need anything else.",
+        "It's a pleasure to help you, thank you too!"
+      ]
+    },
+    {
+      "tag": "information",
+      "patterns": [
+        "quiero información",
+        "dame información",
+        "explícame esto",
+        "¿qué es esto?",
+        "I want information",
+        "give me information",
+        "explain this",
+        "what is this?"
+      ],
+      "response_es": [
+        "Por favor, dime exactamente qué información necesitas.",
+        "Dime el tema de la información que necesitas y te ayudaré.",
+        "Claro, ¿sobre qué tema necesitas información?"
+      ],
+      "response_en": [
+        "Please tell me exactly what information you need.",
+        "Tell me the topic of the information you need and I'll help you.",
+        "Sure, what topic do you need information on?"
       ]
     }
   ]
